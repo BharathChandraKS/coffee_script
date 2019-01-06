@@ -90,3 +90,59 @@ csOutput.insertAdjacentHTML('beforeend',
 csOutput.insertAdjacentHTML('beforeend',
 "Lowercase: - " + longString.toLowerCase() + "<br>")
 ###
+
+# Conditionals
+
+n = 18
+
+if (n >= 18)
+  csOutput.insertAdjacentHTML('beforeend',
+    "Inside if condition <br>")
+else if (n == 19)
+  csOutput.insertAdjacentHTML('beforeend',
+    "Inside else if condition <br>")
+else
+   csOutput.insertAdjacentHTML('beforeend',
+     "Inside else condition <br>")
+
+unless(n == 5)
+  csOutput.insertAdjacentHTML('beforeend',
+  "Inside unless <br>")
+else
+  csOutput.insertAdjacentHTML('beforeend',
+  "Inside else of unless <br>")
+
+# Condition operators && || !
+if !(n > 1) || (n < 55)
+  csOutput.insertAdjacentHTML('beforeend',
+    "Inside the or condition <br>")
+
+age = 7
+
+switch age
+  when 5 then csOutput.insertAdjacentHTML('beforeend',
+    "Age 5 <br>")
+  when 6, 7, 8 then csOutput.insertAdjacentHTML('beforeend',
+    "Age 6, 7 or 8 <br>")
+  else csOutput.insertAdjacentHTML('beforeend',
+    "Age unknown <br>")
+
+# ? existantial operator
+if age?
+  csOutput.insertAdjacentHTML('beforeend',
+    " Age has a value <br>")
+
+chicken = null
+
+chickenName = chicken ? "Fred"
+
+csOutput.insertAdjacentHTML('beforeend',
+"Name of the chicken is #{chickenName}<br>")
+
+hat = "Winter Hat"
+coat = "Winter Coat"
+gloves = null
+
+if hat? and coat?
+  csOutput.insertAdjacentHTML('beforeend',
+    "#{hat} #{coat} #{gloves? 'Winter Gloves'}<br>")
