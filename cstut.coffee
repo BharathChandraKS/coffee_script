@@ -146,7 +146,7 @@ gloves = null
 if hat? and coat?
   csOutput.insertAdjacentHTML('beforeend',
     "#{hat} #{coat} #{gloves ? 'Winter Gloves'} <br>")
-###
+
 
 randArray = ["Word", false, 1234, 1.23]
 
@@ -162,7 +162,7 @@ tenTo1 = [10..1]
 
 combinedArray = oneTo10.concat tenTo1
 
-###
+
 for x in oneTo10
   csOutput.insertAdjacentHTML('beforeend',
     "#{}<br>")
@@ -191,7 +191,7 @@ csOutput.insertAdjacentHTML('beforeend',
 csOutput.insertAdjacentHTML('beforeend',
   "Reverse - #{tenTo1.reverse()}<br>")
 
-###
+
 
 for x in oneTo10
   csOutput.insertAdjacentHTML('beforeend',
@@ -214,3 +214,46 @@ employees = [
 for employee, employeeIndex in employees
 csOutput.insertAdjacentHTML('beforeend',
 "#{employee}: #{employeeIndex}<br>")
+
+###
+
+helloFunc = (name) ->
+  return "Hello #{name}"
+
+csOutput.insertAdjacentHTML('beforeend',
+  "#{helloFunc("Bharath")}<br>")
+
+getRandNum = ->
+  return Math.floor(Math.random() * 100) + 1
+
+csOutput.insertAdjacentHTML('beforeend',
+  "#{getRandNum()}<br>")
+
+sumNums = (vars...) ->
+  sum = 0
+  for x in vars
+    sum += x
+  return sum
+
+csOutput.insertAdjacentHTML('beforeend',
+  "Sum is: #{sumNums(1,2,3,4,5)}<br>")
+
+movieRank = (starts = 1) ->
+  if starts <= 2
+    "Bad"
+  else
+    "Good"
+
+csOutput.insertAdjacentHTML('beforeend',
+  "Movie is: #{movieRank()}<br>")
+
+
+# Recursive functions
+factorial = (x) ->
+  return 0 if x < 0
+  return 1 if x == 0 or x == 1
+  return x * factorial(x-1)
+
+
+csOutput.insertAdjacentHTML('beforeend',
+"Factorial is: #{factorial(5)}<br>")

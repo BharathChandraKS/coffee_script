@@ -139,8 +139,71 @@
   if hat? and coat?
     csOutput.insertAdjacentHTML('beforeend',
       "#{hat} #{coat} #{gloves ? 'Winter Gloves'} <br>")
+
+  randArray = ["Word", false, 1234, 1.23]
+
+  csOutput.insertAdjacentHTML('beforeend',
+  "index 2: #{randArray[2]}<br>")
+
+  csOutput.insertAdjacentHTML('beforeend',
+  "Last 2: #{randArray[1..3]}<br>")
+
+  oneTo10 = [1..10]
+
+  tenTo1 = [10..1]
+
+  combinedArray = oneTo10.concat tenTo1
+
+  for x in oneTo10
+    csOutput.insertAdjacentHTML('beforeend',
+      "#{}<br>")
+
+  csOutput.insertAdjacentHTML('beforeend',
+    "#{oneTo10.toString()}<br>")
+
+  evensOnly = oneTo10.filter (x) -> x % 2 == 0
+  str = evensOnly.toString()
+  csOutput.insertAdjacentHTML('beforeend',
+    "Evens only - #{str}<br>")
+
+   * ... is a splat which means I need all the items inside of the array
+  csOutput.insertAdjacentHTML('beforeend',
+    "Max - #{Math.max oneTo10...}<br>")
+
+  csOutput.insertAdjacentHTML('beforeend',
+    "Min - #{Math.min oneTo10...}<br>")
+
+  sumOfArray = oneTo10.reduce (x,y) -> x+y
+  csOutput.insertAdjacentHTML('beforeend',
+    "Sum - #{sumOfArray}<br>")
+
+  csOutput.insertAdjacentHTML('beforeend',
+    "Reverse - #{tenTo1.reverse()}<br>")
+
+  for x in oneTo10
+    csOutput.insertAdjacentHTML('beforeend',
+    "#{x}<br>")
+
+  for x in oneTo10 when x%2 is 0
+    csOutput.insertAdjacentHTML('beforeend',
+    "#{x}<br>")
+
+  for x in [20..40] by 2
+    csOutput.insertAdjacentHTML('beforeend',
+    "#{x}<br>")
+
+  employees = [
+    "Doug"
+    "Sue"
+    "paul"
+  ]
+
+  for employee, employeeIndex in employees
+  csOutput.insertAdjacentHTML('beforeend',
+  "#{employee}: #{employeeIndex}<br>")
+
    */
-  var combinedArray, csOutput, i, j, k, len, len1, name, oneTo10, randArray, tenTo1, x;
+  var csOutput, factorial, getRandNum, helloFunc, movieRank, name, sumNums;
 
   name = "Bharath";
 
@@ -148,60 +211,51 @@
 
   csOutput.innerHTML = `Hello ${name}<br>`;
 
-  randArray = ["Word", false, 1234, 1.23];
+  helloFunc = function(name) {
+    return `Hello ${name}`;
+  };
 
-  csOutput.insertAdjacentHTML('beforeend', `index 2: ${randArray[2]}<br>`);
+  csOutput.insertAdjacentHTML('beforeend', `${helloFunc("Bharath")}<br>`);
 
-  csOutput.insertAdjacentHTML('beforeend', `Last 2: ${randArray.slice(1, 4)}<br>`);
+  getRandNum = function() {
+    return Math.floor(Math.random() * 100) + 1;
+  };
 
-  oneTo10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  csOutput.insertAdjacentHTML('beforeend', `${getRandNum()}<br>`);
 
-  tenTo1 = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-
-  combinedArray = oneTo10.concat(tenTo1);
-
-/*
-for x in oneTo10
-  csOutput.insertAdjacentHTML('beforeend',
-    "#{}<br>")
-
-csOutput.insertAdjacentHTML('beforeend',
-  "#{oneTo10.toString()}<br>")
-
-evensOnly = oneTo10.filter (x) -> x % 2 == 0
-str = evensOnly.toString()
-csOutput.insertAdjacentHTML('beforeend',
-  "Evens only - #{str}<br>")
-
- * ... is a splat which means I need all the items inside of the array
-csOutput.insertAdjacentHTML('beforeend',
-  "Max - #{Math.max oneTo10...}<br>")
-
-csOutput.insertAdjacentHTML('beforeend',
-  "Min - #{Math.min oneTo10...}<br>")
-
-sumOfArray = oneTo10.reduce (x,y) -> x+y
-csOutput.insertAdjacentHTML('beforeend',
-  "Sum - #{sumOfArray}<br>")
-
-csOutput.insertAdjacentHTML('beforeend',
-  "Reverse - #{tenTo1.reverse()}<br>")
-
- */
-  for (i = 0, len = oneTo10.length; i < len; i++) {
-    x = oneTo10[i];
-    csOutput.insertAdjacentHTML('beforeend', `${x}<br>`);
-  }
-
-  for (j = 0, len1 = oneTo10.length; j < len1; j++) {
-    x = oneTo10[j];
-    if (x % 2 === 0) {
-      csOutput.insertAdjacentHTML('beforeend', `${x}<br>`);
+  sumNums = function(...vars) {
+    var i, len, sum, x;
+    sum = 0;
+    for (i = 0, len = vars.length; i < len; i++) {
+      x = vars[i];
+      sum += x;
     }
-  }
+    return sum;
+  };
 
-  for (x = k = 20; k <= 40; x = k += 2) {
-    csOutput.insertAdjacentHTML('beforeend', `${x}<br>`);
-  }
+  csOutput.insertAdjacentHTML('beforeend', `Sum is: ${sumNums(1, 2, 3, 4, 5)}<br>`);
+
+  movieRank = function(starts = 1) {
+    if (starts <= 2) {
+      return "Bad";
+    } else {
+      return "Good";
+    }
+  };
+
+  csOutput.insertAdjacentHTML('beforeend', `Movie is: ${movieRank()}<br>`);
+
+  // Recursive functions
+  factorial = function(x) {
+    if (x < 0) {
+      return 0;
+    }
+    if (x === 0 || x === 1) {
+      return 1;
+    }
+    return x * factorial(x - 1);
+  };
+
+  csOutput.insertAdjacentHTML('beforeend', `Factorial is: ${factorial(5)}<br>`);
 
 }).call(this);
