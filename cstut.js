@@ -3,14 +3,6 @@
   /*
   My first coffee script tutorial
   */
-  var age, chicken, chickenName, coat, csOutput, gloves, hat, n, name;
-
-  name = "Bharath";
-
-  csOutput = document.getElementById("csoutput");
-
-  csOutput.innerHTML = `Hello ${name}<br>`;
-
   /*
   aString = "I am a String"
 
@@ -91,62 +83,125 @@
 
   csOutput.insertAdjacentHTML('beforeend',
   "Lowercase: - " + longString.toLowerCase() + "<br>")
+
+   * Conditionals
+
+  n = 18
+
+  if (n >= 18)
+    csOutput.insertAdjacentHTML('beforeend',
+      "Inside if condition <br>")
+  else if (n == 19)
+    csOutput.insertAdjacentHTML('beforeend',
+      "Inside else if condition <br>")
+  else
+     csOutput.insertAdjacentHTML('beforeend',
+       "Inside else condition <br>")
+
+  unless(n == 5)
+    csOutput.insertAdjacentHTML('beforeend',
+    "Inside unless <br>")
+  else
+    csOutput.insertAdjacentHTML('beforeend',
+    "Inside else of unless <br>")
+
+   * Condition operators && || !
+  if !(n > 1) || (n < 55)
+    csOutput.insertAdjacentHTML('beforeend',
+      "Inside the or condition <br>")
+
+  age = 7
+
+  switch age
+    when 5 then csOutput.insertAdjacentHTML('beforeend',
+      "Age 5 <br>")
+    when 6, 7, 8 then csOutput.insertAdjacentHTML('beforeend',
+      "Age 6, 7 or 8 <br>")
+    else csOutput.insertAdjacentHTML('beforeend',
+      "Age unknown <br>")
+
+   * ? existantial operator
+  if age?
+    csOutput.insertAdjacentHTML('beforeend',
+      " Age has a value <br>")
+
+  chicken = null
+
+  chickenName = chicken ? "Fred"
+
+  csOutput.insertAdjacentHTML('beforeend',
+  "Name of the chicken is #{chickenName}<br>")
+
+  hat = "Winter Hat"
+  coat = "Winter Coat"
+  gloves = null
+
+  if hat? and coat?
+    csOutput.insertAdjacentHTML('beforeend',
+      "#{hat} #{coat} #{gloves ? 'Winter Gloves'} <br>")
    */
-  // Conditionals
-  n = 18;
+  var combinedArray, csOutput, i, j, k, len, len1, name, oneTo10, randArray, tenTo1, x;
 
-  if (n >= 18) {
-    csOutput.insertAdjacentHTML('beforeend', "Inside if condition <br>");
-  } else if (n === 19) {
-    csOutput.insertAdjacentHTML('beforeend', "Inside else if condition <br>");
-  } else {
-    csOutput.insertAdjacentHTML('beforeend', "Inside else condition <br>");
+  name = "Bharath";
+
+  csOutput = document.getElementById("csoutput");
+
+  csOutput.innerHTML = `Hello ${name}<br>`;
+
+  randArray = ["Word", false, 1234, 1.23];
+
+  csOutput.insertAdjacentHTML('beforeend', `index 2: ${randArray[2]}<br>`);
+
+  csOutput.insertAdjacentHTML('beforeend', `Last 2: ${randArray.slice(1, 4)}<br>`);
+
+  oneTo10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  tenTo1 = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+
+  combinedArray = oneTo10.concat(tenTo1);
+
+/*
+for x in oneTo10
+  csOutput.insertAdjacentHTML('beforeend',
+    "#{}<br>")
+
+csOutput.insertAdjacentHTML('beforeend',
+  "#{oneTo10.toString()}<br>")
+
+evensOnly = oneTo10.filter (x) -> x % 2 == 0
+str = evensOnly.toString()
+csOutput.insertAdjacentHTML('beforeend',
+  "Evens only - #{str}<br>")
+
+ * ... is a splat which means I need all the items inside of the array
+csOutput.insertAdjacentHTML('beforeend',
+  "Max - #{Math.max oneTo10...}<br>")
+
+csOutput.insertAdjacentHTML('beforeend',
+  "Min - #{Math.min oneTo10...}<br>")
+
+sumOfArray = oneTo10.reduce (x,y) -> x+y
+csOutput.insertAdjacentHTML('beforeend',
+  "Sum - #{sumOfArray}<br>")
+
+csOutput.insertAdjacentHTML('beforeend',
+  "Reverse - #{tenTo1.reverse()}<br>")
+
+ */
+  for (i = 0, len = oneTo10.length; i < len; i++) {
+    x = oneTo10[i];
+    csOutput.insertAdjacentHTML('beforeend', `${x}<br>`);
   }
 
-  if (!(n === 5)) {
-    csOutput.insertAdjacentHTML('beforeend', "Inside unless <br>");
-  } else {
-    csOutput.insertAdjacentHTML('beforeend', "Inside else of unless <br>");
+  for (j = 0, len1 = oneTo10.length; j < len1; j++) {
+    x = oneTo10[j];
+    if (x % 2 === 0) {
+      csOutput.insertAdjacentHTML('beforeend', `${x}<br>`);
+    }
   }
 
-  if (!(n > 1) || (n < 55)) {
-    csOutput.insertAdjacentHTML('beforeend', "Inside the or condition <br>");
-  }
-
-  age = 7;
-
-  switch (age) {
-    case 5:
-      csOutput.insertAdjacentHTML('beforeend', "Age 5 <br>");
-      break;
-    case 6:
-    case 7:
-    case 8:
-      csOutput.insertAdjacentHTML('beforeend', "Age 6, 7 or 8 <br>");
-      break;
-    default:
-      csOutput.insertAdjacentHTML('beforeend', "Age unknown <br>");
-  }
-
-  // ? existantial operator
-  if (age != null) {
-    csOutput.insertAdjacentHTML('beforeend', " Age has a value <br>");
-  }
-
-  chicken = null;
-
-  chickenName = chicken != null ? chicken : "Fred";
-
-  csOutput.insertAdjacentHTML('beforeend', `Name of the chicken is ${chickenName}<br>`);
-
-  hat = "Winter Hat";
-
-  coat = "Winter Coat";
-
-  gloves = null;
-
-  if ((hat != null) && (coat != null)) {
-    csOutput.insertAdjacentHTML('beforeend', `${hat} ${coat} ${typeof gloves === "function" ? gloves('Winter Gloves') : void 0}<br>`);
+  for (x = k = 20; k <= 40; x = k += 2) {
+    csOutput.insertAdjacentHTML('beforeend', `${x}<br>`);
   }
 
 }).call(this);

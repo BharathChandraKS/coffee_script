@@ -89,7 +89,7 @@ csOutput.insertAdjacentHTML('beforeend',
 
 csOutput.insertAdjacentHTML('beforeend',
 "Lowercase: - " + longString.toLowerCase() + "<br>")
-###
+
 
 # Conditionals
 
@@ -145,4 +145,72 @@ gloves = null
 
 if hat? and coat?
   csOutput.insertAdjacentHTML('beforeend',
-    "#{hat} #{coat} #{gloves? 'Winter Gloves'}<br>")
+    "#{hat} #{coat} #{gloves ? 'Winter Gloves'} <br>")
+###
+
+randArray = ["Word", false, 1234, 1.23]
+
+csOutput.insertAdjacentHTML('beforeend',
+"index 2: #{randArray[2]}<br>")
+
+csOutput.insertAdjacentHTML('beforeend',
+"Last 2: #{randArray[1..3]}<br>")
+
+oneTo10 = [1..10]
+
+tenTo1 = [10..1]
+
+combinedArray = oneTo10.concat tenTo1
+
+###
+for x in oneTo10
+  csOutput.insertAdjacentHTML('beforeend',
+    "#{}<br>")
+
+csOutput.insertAdjacentHTML('beforeend',
+  "#{oneTo10.toString()}<br>")
+
+
+evensOnly = oneTo10.filter (x) -> x % 2 == 0
+str = evensOnly.toString()
+csOutput.insertAdjacentHTML('beforeend',
+  "Evens only - #{str}<br>")
+
+# ... is a splat which means I need all the items inside of the array
+csOutput.insertAdjacentHTML('beforeend',
+  "Max - #{Math.max oneTo10...}<br>")
+
+csOutput.insertAdjacentHTML('beforeend',
+  "Min - #{Math.min oneTo10...}<br>")
+
+sumOfArray = oneTo10.reduce (x,y) -> x+y
+csOutput.insertAdjacentHTML('beforeend',
+  "Sum - #{sumOfArray}<br>")
+
+
+csOutput.insertAdjacentHTML('beforeend',
+  "Reverse - #{tenTo1.reverse()}<br>")
+
+###
+
+for x in oneTo10
+  csOutput.insertAdjacentHTML('beforeend',
+  "#{x}<br>")
+
+for x in oneTo10 when x%2 is 0
+  csOutput.insertAdjacentHTML('beforeend',
+  "#{x}<br>")
+
+for x in [20..40] by 2
+  csOutput.insertAdjacentHTML('beforeend',
+  "#{x}<br>")
+
+employees = [
+  "Doug"
+  "Sue"
+  "paul"
+]
+
+for employee, employeeIndex in employees
+csOutput.insertAdjacentHTML('beforeend',
+"#{employee}: #{employeeIndex}<br>")
