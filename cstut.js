@@ -202,8 +202,46 @@
   csOutput.insertAdjacentHTML('beforeend',
   "#{employee}: #{employeeIndex}<br>")
 
+  helloFunc = (name) ->
+    return "Hello #{name}"
+
+  csOutput.insertAdjacentHTML('beforeend',
+    "#{helloFunc("Bharath")}<br>")
+
+  getRandNum = ->
+    return Math.floor(Math.random() * 100) + 1
+
+  csOutput.insertAdjacentHTML('beforeend',
+    "#{getRandNum()}<br>")
+
+  sumNums = (vars...) ->
+    sum = 0
+    for x in vars
+      sum += x
+    return sum
+
+  csOutput.insertAdjacentHTML('beforeend',
+    "Sum is: #{sumNums(1,2,3,4,5)}<br>")
+
+  movieRank = (starts = 1) ->
+    if starts <= 2
+      "Bad"
+    else
+      "Good"
+
+  csOutput.insertAdjacentHTML('beforeend',
+    "Movie is: #{movieRank()}<br>")
+
+   * Recursive functions
+  factorial = (x) ->
+    return 0 if x < 0
+    return 1 if x == 0 or x == 1
+    return x * factorial(x-1)
+
+  csOutput.insertAdjacentHTML('beforeend',
+  "Factorial is: #{factorial(5)}<br>")
    */
-  var csOutput, factorial, getRandNum, helloFunc, movieRank, name, sumNums;
+  var Animal, Dog, csOutput, grover, name, person, x, y;
 
   name = "Bharath";
 
@@ -211,51 +249,98 @@
 
   csOutput.innerHTML = `Hello ${name}<br>`;
 
-  helloFunc = function(name) {
-    return `Hello ${name}`;
+  person = {
+    name: "Bharath",
+    age: 33,
+    street: "Main Street"
   };
 
-  csOutput.insertAdjacentHTML('beforeend', `${helloFunc("Bharath")}<br>`);
+  person.state = "NSW";
 
-  getRandNum = function() {
-    return Math.floor(Math.random() * 100) + 1;
-  };
+  csOutput.insertAdjacentHTML('beforeend', `Person is: ${person.name}, ${person.state}<br>`);
 
-  csOutput.insertAdjacentHTML('beforeend', `${getRandNum()}<br>`);
+  for (x in person) {
+    y = person[x];
+    csOutput.insertAdjacentHTML('beforeend', `${x} is: ${y}<br>`);
+  }
 
-  sumNums = function(...vars) {
-    var i, len, sum, x;
-    sum = 0;
-    for (i = 0, len = vars.length; i < len; i++) {
-      x = vars[i];
-      sum += x;
-    }
-    return sum;
-  };
+  Animal = (function() {
+    class Animal {
+      static getNumOfAnimals() {
+        return Animal.numOfAnimals;
+      }
 
-  csOutput.insertAdjacentHTML('beforeend', `Sum is: ${sumNums(1, 2, 3, 4, 5)}<br>`);
+      constructor(name = "No Name", height1 = 0, weight1 = 0) {
+        this.height = height1;
+        this.weight = weight1;
+        this.name = name;
+        Animal.numOfAnimals++;
+      }
 
-  movieRank = function(starts = 1) {
-    if (starts <= 2) {
-      return "Bad";
+      makeSound() {
+        return `says ${this.sound}`;
+      }
+
+      getinfo() {
+        return `${this.name} is ${this.weight} cm and weighs ${this.weight} kg and ${this.makeSound()}`;
+      }
+
+    };
+
+    Animal.prototype.name = "No Name";
+
+    Animal.prototype.height = 0;
+
+    Animal.prototype.weight = 0;
+
+    Animal.prototype.sound = "No Sound";
+
+    Animal.numOfAnimals = 0;
+
+    return Animal;
+
+  }).call(this);
+
+  grover = new Animal();
+
+  grover.name = "Grover";
+
+  grover.height = 50;
+
+  grover.weight = 35;
+
+  grover.sound = "Woof";
+
+  grover.getinfo();
+
+  grover.makeSound();
+
+  csOutput.insertAdjacentHTML('beforeend', `Animal Info: ${grover.getinfo()}<br>`);
+
+  Animal.prototype.isItBig = function() {
+    if (this.height >= 45) {
+      return "Yes";
     } else {
-      return "Good";
+      return "No";
     }
   };
 
-  csOutput.insertAdjacentHTML('beforeend', `Movie is: ${movieRank()}<br>`);
+  csOutput.insertAdjacentHTML('beforeend', `Is Grover Big?: ${grover.isItBig()}<br>`);
 
-  // Recursive functions
-  factorial = function(x) {
-    if (x < 0) {
-      return 0;
-    }
-    if (x === 0 || x === 1) {
-      return 1;
-    }
-    return x * factorial(x - 1);
-  };
+  csOutput.insertAdjacentHTML('beforeend', `Number of animals?: ${Animal.getNumOfAnimals()}<br>`);
 
-  csOutput.insertAdjacentHTML('beforeend', `Factorial is: ${factorial(5)}<br>`);
+  Dog = (function() {
+    class Dog extends Animal {
+      constructor(name = "No Name", height) {
+        super(name, height, weight);
+      }
+
+    };
+
+    Dog.prototype.sound = "No Sound";
+
+    return Dog;
+
+  }).call(this);
 
 }).call(this);

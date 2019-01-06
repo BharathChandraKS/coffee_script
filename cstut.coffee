@@ -215,7 +215,7 @@ for employee, employeeIndex in employees
 csOutput.insertAdjacentHTML('beforeend',
 "#{employee}: #{employeeIndex}<br>")
 
-###
+
 
 helloFunc = (name) ->
   return "Hello #{name}"
@@ -257,3 +257,75 @@ factorial = (x) ->
 
 csOutput.insertAdjacentHTML('beforeend',
 "Factorial is: #{factorial(5)}<br>")
+###
+
+person = {name: "Bharath", age: 33, street: "Main Street"}
+person.state = "NSW"
+
+csOutput.insertAdjacentHTML('beforeend',
+  "Person is: #{person.name}, #{person.state}<br>")
+
+
+for x, y of person
+  csOutput.insertAdjacentHTML('beforeend',
+  "#{x} is: #{y}<br>")
+
+class Animal
+  name: "No Name"
+  height: 0
+  weight: 0
+  sound: "No Sound"
+
+  @numOfAnimals: 0
+
+  @getNumOfAnimals: () ->
+    Animal.numOfAnimals
+
+  constructor: (name = "No Name", @height = 0, @weight = 0) ->
+    @name = name
+    Animal.numOfAnimals++
+
+  makeSound: ->
+    "says #{@sound}"
+
+  getinfo: ->
+    "#{@name} is #{@weight} cm and weighs #{@weight} kg and #{@makeSound()}"
+
+
+grover = new Animal()
+grover.name = "Grover"
+grover.height = 50
+grover.weight = 35
+grover.sound = "Woof"
+grover.getinfo()
+grover.makeSound()
+
+csOutput.insertAdjacentHTML('beforeend',
+  "Animal Info: #{grover.getinfo()}<br>")
+
+Animal::isItBig = ->
+  if @height >= 45
+    "Yes"
+  else
+    "No"
+
+csOutput.insertAdjacentHTML('beforeend',
+  "Is Grover Big?: #{grover.isItBig()}<br>")
+
+csOutput.insertAdjacentHTML('beforeend',
+  "Number of animals?: #{Animal.getNumOfAnimals()}<br>")
+
+
+class Dog extends Animal
+  sound2: "No Sound"
+
+  constructor: (name = "No Name", height = 0, weight = 0) ->
+    super(name, height, weight)
+
+  makeSound: ->
+    super + " and #{@sound2}"
+
+sparky = new Dog("Sparky")
+
+sparky.sound = "Woof"
+Sparky.sound = "Wooooooof"
